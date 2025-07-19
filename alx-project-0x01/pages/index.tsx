@@ -5,7 +5,7 @@ const Home: React.FC = () => {
     <>
       <Header />
       <div className="flex justify-center items-center h-screen">
-        <h1 className="text-4xl font-semibold">Welcome to our Application!</h1>
+        <h1 className="text-7xl font-thin">Welcome Page</h1>
       </div>
     </>
   );
