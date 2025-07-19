@@ -9,8 +9,8 @@ const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
       <main className="p-4">
         <h1 className="text-2xl font-semibold mb-4">Users List</h1>
         <div className="grid grid-cols-3 gap-4">
-          {posts?.map((user: UserProps, key: number) => (
-            <UserCard {...user} key={key} />
+          {posts.map((user: UserProps, index: number) => (
+            <UserCard {...user} key={index} />
           ))}
         </div>
       </main>
