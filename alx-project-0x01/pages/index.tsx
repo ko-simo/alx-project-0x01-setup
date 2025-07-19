@@ -3,7 +3,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Header />
@@ -16,4 +16,6 @@ export default function Home() {
       <Footer />
     </>
   );
-}
+};
+
+export default Home;
