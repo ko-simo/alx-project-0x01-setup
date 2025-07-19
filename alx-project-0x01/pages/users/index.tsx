@@ -1,39 +1,32 @@
-import { useState } from "react";
+import UserCard from "@/components/common/UserCard";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import Button from "@/components/common/Button";
-import UserModal from "@/components/common/UserModal";
-import { UserData } from "@/interfaces";
+import { UserProps } from "@/interfaces";
 
-const UsersPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [users, setUsers] = useState<UserData[]>([]);
-
-  const handleAddUser = (newUser: UserData) => {
-    setUsers((prev) => [...prev, newUser]);
-  };
-
+const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Header />
-      <div className="p-6">
-        <Button onClick={() => setIsModalOpen(true)}>Add User</Button>
-        <UserModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onAddUser={handleAddUser}
-        />
-        <ul className="mt-4">
-          {users.map((user) => (
-            <li key={user.id} className="mb-2">
-              <strong>{user.name}</strong> - {user.email}
-            </li>
+      <main className="p-4">
+        <h1 className="text-2xl font-semibold mb-4">Users List</h1>
+        <div className="grid grid-cols-3 gap-4">
+          {posts?.map((user: UserProps, key: number) => (
+            <UserCard {...user} key={key} />
           ))}
-        </ul>
-      </div>
-      <Footer />
-    </>
+        </div>
+      </main>
+    </div>
   );
 };
 
-export default UsersPage;
+export async function getStaticProps() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const posts = await response.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default Users;
