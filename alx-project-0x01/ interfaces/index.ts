@@ -1,4 +1,11 @@
-export interface UserData {
+export interface PostProps {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+export interface UserProps {
   id: number;
   name: string;
   username: string;
@@ -20,10 +27,4 @@ export interface UserData {
     catchPhrase: string;
     bs: string;
   };
-}
-
-export interface UserModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (user: UserData) => void;
 }
