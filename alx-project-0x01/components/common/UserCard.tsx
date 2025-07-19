@@ -1,19 +1,22 @@
-import React from "react";
 import { UserProps } from "@/interfaces";
 
-const UserCard = ({ name, email, address, company, phone, website }: UserProps) => {
+const UserCard: React.FC<UserProps> = ({ name, username, email, address, phone, website, company }) => {
   return (
-    <div className="border rounded-2xl p-4 shadow-md hover:shadow-lg transition-all bg-white">
-      <h2 className="text-xl font-bold text-blue-700">{name}</h2>
-      <p className="text-gray-600">{email}</p>
-      <p className="text-sm text-gray-500">
-        {address.street}, {address.city}
-      </p>
-      <p className="text-sm text-gray-500">Company: {company.name}</p>
-      <p className="text-sm text-gray-500">Phone: {phone}</p>
-      <a href={`http://${website}`} className="text-blue-500 hover:underline" target="_blank" rel="noreferrer">
-        {website}
-      </a>
+    <div className="max-w-xl mx-auto my-6 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <h2 className="text-2xl font-semibold text-gray-800">{name} ({username})</h2>
+      <p className="text-gray-600 mb-2">Email: {email}</p>
+      <p className="text-gray-600 mb-2">Phone: {phone}</p>
+      <p className="text-gray-600 mb-2">Website: {website}</p>
+      <div className="mb-2">
+        <h3 className="font-semibold text-gray-700">Address:</h3>
+        <p>{address.street}, {address.suite}, {address.city}, {address.zipcode}</p>
+      </div>
+      <div>
+        <h3 className="font-semibold text-gray-700">Company:</h3>
+        <p>{company.name}</p>
+        <p><em>{company.catchPhrase}</em></p>
+        <p>{company.bs}</p>
+      </div>
     </div>
   );
 };
